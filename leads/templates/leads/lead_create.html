@@ -9,7 +9,10 @@
     <a href="/leads">Go back to leads</a>
     <hr />
     <h1>Create a new lead</h1>
-    <form method="POST">{% csrf_token %} {{form.as_p}}</form>
-    <button type="submit">Submit</button>
+    <form action = "{% url 'leads:lead_create' %}" method="POST">
+      {% csrf_token %} 
+      {{form.as_p}}
+      <button type="submit">Submit</button>
+  </form>
   </body>
 </html>

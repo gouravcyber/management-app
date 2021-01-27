@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect
 from .models import Lead
 from .forms import LeadForm
 
@@ -17,8 +17,11 @@ def lead_detail(request, pk):
     return render(request, 'leads/lead_detail.html', context)  
 
 def lead_create(request):
-    print(request.POST)
-    context = {
-        'form': LeadForm()
-    }
-    return render(request, "leads/lead_create.html", context)
+    if request.method=='POST':
+        print(request.POST)
+        return redirect('leads:lead_create')
+    else:
+        context = {
+            'form': LeadForm()
+        }
+        return render(request, "leads/lead_create.html", context)
